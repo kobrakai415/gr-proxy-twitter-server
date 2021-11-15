@@ -1,0 +1,32 @@
+{
+  "name": "gr-proxy-twitter-server",
+  "version": "1.0.0",
+  "description": "proxy server to ocercome twitter cors troubles",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobrakai415/gr-proxy-twitter-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kobrakai415/gr-proxy-twitter-server/issues"
+  },
+  "homepage": "https://github.com/kobrakai415/gr-proxy-twitter-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.7"
+  }
+}
