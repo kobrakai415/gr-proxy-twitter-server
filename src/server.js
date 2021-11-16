@@ -21,19 +21,19 @@ const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL, "http://loca
 
 console.log('whitelist:', whitelist)
 
-const corsOptions = {
-    origin: function (origin, next) {
+// const corsOptions = {
+//     origin: function (origin, next) {
 
-        if (whitelist.indexOf(origin) !== -1) {
-            next(null, next)
-        } else {
-            console.log("Cors error!")
-        }
-    },
-    credentials: true
-}
+//         if (whitelist.indexOf(origin) !== -1) {
+//             next(null, next)
+//         } else {
+//             console.log("Cors error!")
+//         }
+//     },
+//     credentials: true
+// }
 
-server.use(cors(corsOptions));
+// server.use(cors(corsOptions));
 
 server.get("/search/:query", (req, res) => {
     try {
