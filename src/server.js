@@ -2,17 +2,15 @@ import express from "express"
 import cors from "cors"
 import Twit from "twit"
 
-const consumer_key = process.env.ApiKey
-const consumer_secret = process.env.ApiKeySecret
 
 const T = new Twit({
-    consumer_key: consumer_key,
-    consumer_secret: consumer_secret,
+    consumer_key: process.env.ApiKey,
+    consumer_secret: process.env.ApiKeySecret,
     access_token: process.env.AccessToken,
     access_token_secret: process.env.AccessTokenSecret,
 })
 
-console.log(process.env.PORT)
+
 const port = process.env.PORT || 3001
 
 const server = express()
