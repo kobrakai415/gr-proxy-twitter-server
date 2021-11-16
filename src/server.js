@@ -1,7 +1,8 @@
 import express from "express"
 import cors from "cors"
 import Twit from "twit"
-
+import createError from "http-errors"
+import { catchAllErrorHandler, forbiddenErrorHandler } from "./errorhandler"
 
 const T = new Twit({
     consumer_key: process.env.ApiKey,
@@ -10,12 +11,10 @@ const T = new Twit({
     access_token_secret: process.env.AccessTokenSecret,
 })
 
-
 const port = process.env.PORT || 3001
 
 const server = express()
 server.use(express.json())
-
 
 const whitelist = [process.env.FE_DEV_URL, process.env.FE_PROD_URL, "http://localhost:3000"]
 
@@ -27,7 +26,7 @@ const corsOptions = {
         if (whitelist.indexOf(origin) !== -1) {
             next(null, next)
         } else {
-            console.log("Cors error!")
+            next(createError(403, { message: "Origin not allowed" }))
         }
     },
 }
@@ -36,7 +35,6 @@ server.use(cors(corsOptions));
 
 server.get("/search/:query", (req, res) => {
     try {
-
         T.get('search/tweets', { q: `${req.params.query}`, count: 10 }, function (err, data, response) {
             err === undefined ? res.status(200).send(data.statuses) : res.send(err)
         })
@@ -45,6 +43,9 @@ server.get("/search/:query", (req, res) => {
     }
 
 })
+
+server.use(forbiddenErrorHandler);
+server.use(catchAllErrorHandler);
 
 server.listen(port, () => {
 
