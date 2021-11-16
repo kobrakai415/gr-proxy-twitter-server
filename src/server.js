@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import Twit from "twit"
 import createError from "http-errors"
-import { catchAllErrorHandler, forbiddenErrorHandler } from "./errorhandler"
+import { catchAllErrorHandler, forbiddenErrorHandler } from "./errorhandler.js"
 
 const T = new Twit({
     consumer_key: process.env.ApiKey,
